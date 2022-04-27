@@ -1,5 +1,4 @@
 package com.scooty.scooty.controllers;
-
 import com.scooty.scooty.controllers.model.NetworkAnswer;
 import com.scooty.scooty.exceptions.AlreadyExistsException;
 import com.scooty.scooty.model.InputUser;
