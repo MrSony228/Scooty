@@ -15,6 +15,7 @@ public class OutputTransport {
         outputTransport.setDescription(transport.getDescription());
         outputTransport.setFree(transport.isFree());
         outputTransport.setQrCodeValue(transport.getQrCodeValue());
+        outputTransport.setPrice(transport.getPrice());
         outputTransport.setManufacturer(transport.getManufacturer().getTitle());
         return outputTransport;
     }
@@ -27,5 +28,6 @@ public class OutputTransport {
     private int mileage;
     private String qrCodeValue;
     private String manufacturer;
+    private int price;
 
 }

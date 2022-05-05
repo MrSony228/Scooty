@@ -32,6 +32,9 @@ public class Transport {
     @Column(name = "qr_code_value")
     private  String qrCodeValue;
 
+    @Column(name = "price")
+    private int price;
+
     @JoinColumn (name= "manufacturer_id")
     @ManyToOne
     private Manufacturer manufacturer;

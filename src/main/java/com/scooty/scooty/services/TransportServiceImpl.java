@@ -39,6 +39,7 @@ public class TransportServiceImpl implements TransportService {
        result.setName(transport.getName());
        result.setFree(transport.isFree());
        result.setMileage(transport.getMileage());
+       result.setPrice(transport.getPrice());
        result.setManufacturer(transport.getManufacturer().getTitle());
         return result;
     }
