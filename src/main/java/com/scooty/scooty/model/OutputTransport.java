@@ -14,6 +14,7 @@ public class OutputTransport {
         outputTransport.setMileage(transport.getMileage());
         outputTransport.setDescription(transport.getDescription());
         outputTransport.setFree(transport.isFree());
+        outputTransport.setQrCodeValue(transport.getQrCodeValue());
         outputTransport.setManufacturer(transport.getManufacturer().getTitle());
         return outputTransport;
     }
@@ -24,6 +25,7 @@ public class OutputTransport {
     private boolean isFree;
     private String description;
     private int mileage;
+    private String qrCodeValue;
     private String manufacturer;
 
 }

@@ -1,6 +1,7 @@
 package com.scooty.scooty.controllers;
 
 import com.scooty.scooty.model.OutputParkingPlace;
+import com.scooty.scooty.model.OutputTransport;
 import com.scooty.scooty.services.TransportService;
 import com.scooty.scooty.table.ParkingPlace;
 import lombok.RequiredArgsConstructor;
@@ -34,6 +35,11 @@ public class TransportController {
             outputParkingPlaces.add(OutputParkingPlace.fromParkingPlace(parkingPlace, batteryLevel));
         }
         return outputParkingPlaces;
+    }
+    @GetMapping("qr-code")
+    @Transactional
+    public OutputTransport getByQrCode(@RequestParam(name ="qrCode") String qrCode){
+       return transportService.getTransportByQrCodeValue(qrCode);
     }
 
 }

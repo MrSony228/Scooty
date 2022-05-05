@@ -9,5 +9,5 @@ import java.util.List;
 @Repository
 public interface TransportRepository extends JpaRepository<Transport, Integer> {
     List<Transport> findAll();
-    Transport findByParkingPlaceId(int id);
+    Transport findByQrCodeValue(String qrCode);
 }
