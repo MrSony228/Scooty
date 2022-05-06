@@ -11,6 +11,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
+import javax.servlet.http.HttpServletRequest;
+import java.security.Principal;
+
 
 @RestController
 @RequiredArgsConstructor
@@ -44,6 +47,13 @@ public class UsersController extends BaseRestController {
     @PutMapping("{id}")
     public void edit(@RequestBody InputUser inputUser, @PathVariable int id){
         usersService.edit(inputUser, id);
+    }
+
+    @GetMapping("/get")
+    @ResponseBody
+    public OutputUser currentUserNameSimple(HttpServletRequest request){
+        Principal principal = request.getUserPrincipal();
+        return usersService.getOutputUserByEmail(principal.getName());
     }
 
 }

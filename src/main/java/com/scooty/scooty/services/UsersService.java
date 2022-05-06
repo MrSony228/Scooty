@@ -33,8 +33,17 @@ public class UsersService {
         return this.usersRepository.save(user);
     }
 
+    public OutputUser getOutputUserByEmail(String email){
+        User user = getUserByEmail(email);
+        return getOutputUser(user);
+    }
+
     public OutputUser getByIdOutputUser(int id) {
         User user = getById(id);
+        return getOutputUser(user);
+    }
+
+    private OutputUser getOutputUser(User user) {
         OutputUser outputUser = new OutputUser();
         outputUser.setFirstName(user.getFirstName());
         outputUser.setMiddleName(user.getMiddleName());
