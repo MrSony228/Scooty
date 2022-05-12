@@ -1,7 +1,7 @@
 package com.scooty.scooty.services;
 
 import com.scooty.scooty.repository.TravelRepository;
-import com.scooty.scooty.table.BankCards;
+import com.scooty.scooty.table.BankCard;
 import com.scooty.scooty.table.Transport;
 import com.scooty.scooty.table.Travel;
 import com.scooty.scooty.table.User;
@@ -28,7 +28,7 @@ public class TravelService {
     @Transactional
     public Travel travelStart(User user,
                               Transport transport,
-                              BankCards bankCard,
+                              BankCard bankCard,
                               double startPointLatitude,
                               double startPointLongitude,
                               LocalDateTime travelTimeStart,

@@ -2,8 +2,7 @@ package com.scooty.scooty.model;
 
 import lombok.Data;
 
-import java.time.LocalDateTime;
-
+import java.time.LocalDate;
 @Data
 public class OutputUser {
     private String firstName;
@@ -14,5 +13,5 @@ public class OutputUser {
     private String numberPassport;
     private String seriesDriverLicense;
     private String numberDriverLicense;
-    private LocalDateTime birthdate;
+    private LocalDate birthdate;
 }

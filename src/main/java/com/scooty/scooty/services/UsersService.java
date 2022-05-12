@@ -3,13 +3,14 @@ package com.scooty.scooty.services;
 import com.scooty.scooty.model.InputUser;
 import com.scooty.scooty.model.OutputUser;
 import com.scooty.scooty.repository.UsersRepository;
-import com.scooty.scooty.table.Travel;
 import com.scooty.scooty.table.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
+import java.sql.Date;
+import java.sql.Timestamp;
+import java.time.LocalDate;
 
 @Service
 public class UsersService {
@@ -33,6 +34,11 @@ public class UsersService {
         return this.usersRepository.save(user);
     }
 
+    public int getUserIdByEmail(String email){
+        User user = getUserByEmail(email);
+        return user.getId();
+    }
+
     public OutputUser getOutputUserByEmail(String email){
         User user = getUserByEmail(email);
         return getOutputUser(user);
@@ -45,6 +51,7 @@ public class UsersService {
 
     private OutputUser getOutputUser(User user) {
         OutputUser outputUser = new OutputUser();
+        outputUser.setBirthdate(user.getBirthdate().toLocalDate());
         outputUser.setFirstName(user.getFirstName());
         outputUser.setMiddleName(user.getMiddleName());
         outputUser.setLastName(user.getLastName());
@@ -53,7 +60,6 @@ public class UsersService {
         outputUser.setNumberPassport(user.getNumberPassport());
         outputUser.setSeriesDriverLicense(user.getSeriesPassport());
         outputUser.setNumberDriverLicense(user.getNumberDriverLicense());
-        outputUser.setBirthdate(user.getBirthdate());
         return outputUser;
     }
 
@@ -94,7 +100,7 @@ public class UsersService {
         user.setNumberPassport(inputUser.getNumberPassport());
         user.setNumberDriverLicense(inputUser.getNumberDriverLicense());
         user.setSeriesDriverLicense(inputUser.getSeriesDriverLicense());
-        user.setBirthdate(inputUser.getBirthdate());
+        user.setBirthdate(Date.valueOf(inputUser.getBirthdate()));
     }
 
 }

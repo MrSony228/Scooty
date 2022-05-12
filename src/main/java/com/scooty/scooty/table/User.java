@@ -5,7 +5,11 @@ import lombok.Setter;
 import org.hibernate.annotations.NaturalId;
 
 import javax.persistence.*;
-import java.time.LocalDateTime;
+import java.sql.Date;
+import java.sql.Timestamp;
+import java.time.LocalDate;
+
+//import static jdk.nashorn.internal.runtime.regexp.joni.Syntax.Java;
 
 @Entity
 @Table(name = "users")
@@ -23,7 +27,7 @@ public class User {
     private String lastName;
 
     @Column(name = "birthdate")
-    private LocalDateTime birthdate;
+    private Date birthdate;
 
     @Column(name = "middle_name")
     private String middleName;

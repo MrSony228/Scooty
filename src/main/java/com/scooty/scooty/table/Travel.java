@@ -2,10 +2,8 @@ package com.scooty.scooty.table;
 
 import lombok.Getter;
 import lombok.Setter;
-import org.hibernate.annotations.CollectionId;
 
 import javax.persistence.*;
-import java.sql.Timestamp;
 import java.time.LocalDateTime;
 
 @Entity
@@ -45,5 +43,5 @@ public class Travel {
 
     @JoinColumn (name = "card_id")
     @ManyToOne
-    private BankCards card;
+    private BankCard card;
 }

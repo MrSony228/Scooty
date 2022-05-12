@@ -4,7 +4,6 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.sql.Timestamp;
 import java.time.LocalDateTime;
 
 @Entity
@@ -28,5 +27,5 @@ public class Transaction {
 
     @JoinColumn (name = "id_card")
     @ManyToOne
-    private BankCards bankCards;
+    private BankCard bankCard;
 }
