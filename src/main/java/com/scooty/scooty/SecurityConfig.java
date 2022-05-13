@@ -90,7 +90,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .and()
                 .authorizeRequests()
-                .antMatchers(HttpMethod.POST, "/users/registration/**").permitAll()
+                .antMatchers(HttpMethod.POST, "/users/registration/").permitAll()
                 .antMatchers(HttpMethod.GET, "/users/check-exists/").permitAll()
                 .anyRequest().authenticated()
                 .and()
