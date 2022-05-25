@@ -6,10 +6,6 @@ import org.hibernate.annotations.NaturalId;
 
 import javax.persistence.*;
 import java.sql.Date;
-import java.sql.Timestamp;
-import java.time.LocalDate;
-
-//import static jdk.nashorn.internal.runtime.regexp.joni.Syntax.Java;
 
 @Entity
 @Table(name = "users")

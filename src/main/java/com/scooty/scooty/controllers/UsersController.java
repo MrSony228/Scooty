@@ -3,7 +3,6 @@ import com.scooty.scooty.controllers.model.NetworkAnswer;
 import com.scooty.scooty.exceptions.AlreadyExistsException;
 import com.scooty.scooty.model.InputUser;
 import com.scooty.scooty.model.OutputUser;
-import com.scooty.scooty.services.EmailAuthenticationProvider;
 import com.scooty.scooty.services.RegistrationService;
 import com.scooty.scooty.services.UsersService;
 import lombok.RequiredArgsConstructor;
@@ -14,10 +13,12 @@ import org.springframework.web.server.ResponseStatusException;
 import javax.servlet.http.HttpServletRequest;
 import java.security.Principal;
 
+import static org.springframework.http.MediaType.APPLICATION_JSON_UTF8_VALUE;
+
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/users")
+@RequestMapping(value ="/users", produces = APPLICATION_JSON_UTF8_VALUE)
 public class UsersController extends BaseRestController {
 
     private final UsersService usersService;
