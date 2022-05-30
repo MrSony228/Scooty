@@ -5,6 +5,7 @@ import com.scooty.scooty.services.EmailAuthenticationProvider;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.annotation.Order;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -79,6 +80,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     @Override
+    @Order
     protected void configure(HttpSecurity http) throws Exception {  // (2)
         http
                 .cors()
@@ -88,9 +90,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .httpBasic()
                 .disable()
                 .authorizeRequests()
-                .and()
-                .authorizeRequests()
-                .antMatchers(HttpMethod.POST, "/users/registration/").permitAll()
+                .antMatchers("/users/registration/**").permitAll()
                 .antMatchers(HttpMethod.GET, "/users/check-exists/").permitAll()
                 .anyRequest().authenticated()
                 .and()

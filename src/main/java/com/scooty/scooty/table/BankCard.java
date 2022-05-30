@@ -26,6 +26,6 @@ public class BankCard {
     private int cardCvc;
 
     @JoinColumn (name = "id_user")
-    @ManyToOne
+    @OneToOne
     private User user;
 }

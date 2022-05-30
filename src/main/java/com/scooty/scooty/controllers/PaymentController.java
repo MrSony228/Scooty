@@ -36,4 +36,10 @@ public class PaymentController {
         return new NetworkAnswer<>(this.paymentService.existByNumberBankCard(numberBankCard));
     }
 
+    @GetMapping("/get")
+    public List<InputBankCard> getBankCard(HttpServletRequest request){
+        Principal principal = request.getUserPrincipal();
+        return this.paymentService.getByUserId(usersService.getUserIdByEmail(principal.getName()));
+    }
+
 }

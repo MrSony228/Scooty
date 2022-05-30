@@ -6,12 +6,13 @@ import com.scooty.scooty.repository.TransactionRepository;
 import com.scooty.scooty.table.BankCard;
 import com.scooty.scooty.table.Transaction;
 import com.scooty.scooty.table.Travel;
+import liquibase.pro.packaged.I;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
-import java.util.List;
+import java.util.*;
 
 @Service
 @RequiredArgsConstructor
@@ -37,8 +38,35 @@ public class PaymentService {
     }
 
     //Поиск по id
-    public BankCard getByIdCard(int id) {
+    public BankCard getById(int id) {
         return this.bankCardsRepository.getById(id);
+    }
+
+    public List<InputBankCard> getByUserId(int id) {
+        List<BankCard> cards =bankCardsRepository.getBankCardsByUserId(id);
+        if(cards.isEmpty()){
+            return null;
+        }
+        List<InputBankCard> result = new ArrayList<>();
+        if(cards.size() == 1){
+            InputBankCard card = new InputBankCard();
+            card.setUserId(cards.get(0).getUser().getId());
+            card.setNumberBankCard(cards.get(0).getNumberBankCard());
+            card.setCardDate(cards.get(0).getCardDate());
+            card.setCardCvc(cards.get(0).getCardCvc());
+            result.add(0, card);
+        }
+        else {
+            for (int i = 0; i <= cards.size(); i++) {
+                InputBankCard card = new InputBankCard();
+                card.setUserId(cards.get(i).getUser().getId());
+                card.setNumberBankCard(cards.get(i).getNumberBankCard());
+                card.setCardDate(cards.get(i).getCardDate());
+                card.setCardCvc(cards.get(i).getCardCvc());
+                result.add(i, card);
+            }
+        }
+        return result;
     }
 
     //Добавление карты

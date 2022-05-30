@@ -17,7 +17,7 @@ public class OutputParkingPlace {
         outputParkingPlace.setLongitude(parkingPlace.getLongitude());
         outputParkingPlace.setRadius(parkingPlace.getRadius());
         Set<OutputTransport> transports = new HashSet<>();
-        for (Transport transport : parkingPlace.getTransports()) {
+       for (Transport transport : parkingPlace.getTransports()) {
             if (transport.getBatteryLevel() >= (int) batteryLevel) {
                 transports.add(OutputTransport.fromTransport(transport));
             }
