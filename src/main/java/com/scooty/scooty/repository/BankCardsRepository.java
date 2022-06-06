@@ -11,9 +11,11 @@ import java.util.List;
 public interface BankCardsRepository extends JpaRepository<BankCard, id> {
     Boolean existsByNumberBankCard(String numberBankCard);
 
-    Boolean deleteById(int id);
+    Integer deleteByUserId(int id);
 
     BankCard getById(int id);
 
     List<BankCard> getBankCardsByUserId(int userId);
+
+    BankCard getBankCardByNumberBankCard(String numberBankCard);
 }

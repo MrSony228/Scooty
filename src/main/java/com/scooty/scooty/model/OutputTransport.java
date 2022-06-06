@@ -17,6 +17,8 @@ public class OutputTransport {
         outputTransport.setQrCodeValue(transport.getQrCodeValue());
         outputTransport.setPrice(transport.getPrice());
         outputTransport.setManufacturer(transport.getManufacturer().getTitle());
+        outputTransport.setLatitude(transport.getParkingPlace().getLatitude());
+        outputTransport.setLongitude(transport.getParkingPlace().getLongitude());
         return outputTransport;
     }
 
@@ -29,5 +31,7 @@ public class OutputTransport {
     private String qrCodeValue;
     private String manufacturer;
     private int price;
+    private double latitude;
+    private double longitude;
 
 }

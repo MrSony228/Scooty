@@ -6,7 +6,6 @@ import com.scooty.scooty.repository.TransactionRepository;
 import com.scooty.scooty.table.BankCard;
 import com.scooty.scooty.table.Transaction;
 import com.scooty.scooty.table.Travel;
-import liquibase.pro.packaged.I;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -78,15 +77,26 @@ public class PaymentService {
     }
 
     //Удаление карты по id
-    public boolean deleteBankCard(int id)
+    @Transactional
+    public Boolean deleteBankCard(int id)
     {
-        return this.bankCardsRepository.deleteById(id);
+        var result = this.bankCardsRepository.deleteByUserId(id);
+        if(result != 0){
+            return true;
+        }
+        else {return false;}
     }
 
     public Boolean existByNumberBankCard(String number){
         return this.bankCardsRepository.existsByNumberBankCard(number);
     }
 
+    public BankCard editBankCardByNumber(InputBankCard inputBankCard){
+        List<BankCard> bankCards = this.bankCardsRepository.getBankCardsByUserId(inputBankCard.getUserId());
+        BankCard bankCard = bankCards.get(0);
+        fillBankCard(inputBankCard, bankCard);
+        return this.bankCardsRepository.save(bankCard);
+    }
 
     private void fillBankCard(InputBankCard inputBankCard, BankCard bankCard){
         bankCard.setNumberBankCard(inputBankCard.getNumberBankCard());

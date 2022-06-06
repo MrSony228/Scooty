@@ -7,6 +7,7 @@ import com.scooty.scooty.services.UsersService;
 import com.scooty.scooty.table.BankCard;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
@@ -42,4 +43,16 @@ public class PaymentController {
         return this.paymentService.getByUserId(usersService.getUserIdByEmail(principal.getName()));
     }
 
+    @PutMapping("/put")
+    public BankCard editBankCard(@RequestBody InputBankCard inputBankCard){
+        this.paymentService.editBankCardByNumber(inputBankCard);
+        return  this.paymentService.editBankCardByNumber(inputBankCard);
+    }
+
+    @Transactional
+    @DeleteMapping("/deleteCard")
+    public void deleteBankCard(@RequestBody InputBankCard inputBankCard){
+        this.paymentService.deleteBankCard(inputBankCard.getUserId());
+        return;
+    }
 }
