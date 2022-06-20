@@ -9,8 +9,7 @@ import java.time.LocalDateTime;
 @Data
 public class InputBankCard {
     private String numberBankCard;
-    @JsonFormat(pattern = "yyyy-MM-dd")
-    private LocalDate cardDate;
+    private String cardDate;
     private int cardCvc;
     private int userId;
 }
