@@ -26,6 +26,9 @@ public class BankCard {
     @Column(name = "card_cvc")
     private int cardCvc;
 
+    @Column(name = "card_name")
+    private String cardName;
+
     @JoinColumn(name = "id_user")
     @OneToOne
     private User user;

@@ -53,6 +53,7 @@ public class PaymentService {
             card.setNumberBankCard(cards.get(0).getNumberBankCard());
             card.setCardDate(cards.get(0).getCardDate());
             card.setCardCvc(cards.get(0).getCardCvc());
+            card.setCardName(cards.get(0).getCardName());
             result.add(0, card);
         }
         else {
@@ -62,6 +63,7 @@ public class PaymentService {
                 card.setNumberBankCard(cards.get(i).getNumberBankCard());
                 card.setCardDate(cards.get(i).getCardDate());
                 card.setCardCvc(cards.get(i).getCardCvc());
+                card.setCardName(cards.get(i).getCardName());
                 result.add(i, card);
             }
         }
@@ -103,5 +105,6 @@ public class PaymentService {
         bankCard.setCardCvc(inputBankCard.getCardCvc());
         bankCard.setCardDate(inputBankCard.getCardDate());
         bankCard.setUser(usersService.getById(inputBankCard.getUserId()));
+        bankCard.setCardName(inputBankCard.getCardName());
     }
 }

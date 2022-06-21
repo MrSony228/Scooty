@@ -11,4 +11,6 @@ public interface TransportService {
     List<ParkingPlace> getParkingPlacesByDistance(Double userLongitude, Double userLatitude, Double maxDist);
     OutputTransport getTransportByQrCodeValue(String qrCode);
 
+    Transport editFree(int Id, Boolean free);
+
 }

@@ -12,4 +12,5 @@ public class InputBankCard {
     private String cardDate;
     private int cardCvc;
     private int userId;
+    private String cardName;
 }

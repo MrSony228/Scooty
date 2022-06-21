@@ -19,7 +19,9 @@ public class OutputParkingPlace {
         Set<OutputTransport> transports = new HashSet<>();
        for (Transport transport : parkingPlace.getTransports()) {
             if (transport.getBatteryLevel() >= (int) batteryLevel) {
-                transports.add(OutputTransport.fromTransport(transport));
+                if(transport.isFree() == true) {
+                    transports.add(OutputTransport.fromTransport(transport));
+                }
             }
         }
         outputParkingPlace.setTransports(transports);

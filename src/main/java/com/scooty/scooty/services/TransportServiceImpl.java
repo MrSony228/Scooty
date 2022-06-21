@@ -10,7 +10,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 @Service
@@ -44,5 +43,13 @@ public class TransportServiceImpl implements TransportService {
        result.setLongitude(transport.getParkingPlace().getLongitude());
        result.setLatitude(transport.getParkingPlace().getLatitude());
         return result;
+    }
+
+    @Override
+    @Transactional
+    public Transport editFree(int id, Boolean free) {
+       Transport transport = this.transportRepository.findById(id);
+       transport.setFree(free);
+        return this.transportRepository.save(transport);
     }
 }

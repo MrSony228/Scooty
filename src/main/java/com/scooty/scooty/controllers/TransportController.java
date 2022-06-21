@@ -4,13 +4,11 @@ import com.scooty.scooty.model.OutputParkingPlace;
 import com.scooty.scooty.model.OutputTransport;
 import com.scooty.scooty.services.TransportService;
 import com.scooty.scooty.table.ParkingPlace;
+import com.scooty.scooty.table.Transport;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,7 +26,7 @@ public class TransportController {
     public List<OutputParkingPlace> getByDistance(@RequestParam(name = "userLongitude") Double userLongitude,
                                                   @RequestParam(name = "userLatitude") Double userLatitude,
                                                   @RequestParam(name = "maxDist") Double maxDist,
-                                                  @RequestParam(name="batteryLevel") Double batteryLevel) {
+                                                  @RequestParam(name = "batteryLevel") Double batteryLevel) {
         var parkingPlaces = this.transportService.getParkingPlacesByDistance(userLongitude, userLatitude, maxDist);
         List<OutputParkingPlace> outputParkingPlaces = new ArrayList<>();
         for (ParkingPlace parkingPlace : parkingPlaces) {
@@ -36,10 +34,17 @@ public class TransportController {
         }
         return outputParkingPlaces;
     }
+
     @GetMapping("qr-code")
     @Transactional
-    public OutputTransport getByQrCode(@RequestParam(name ="qrCode") String qrCode){
-       return transportService.getTransportByQrCodeValue(qrCode);
+    public OutputTransport getByQrCode(@RequestParam(name = "qrCode") String qrCode) {
+        return transportService.getTransportByQrCodeValue(qrCode);
     }
 
+    @PutMapping("edit-free")
+    @Transactional
+    public Transport editFree(@RequestParam(name = "id") int id,
+                              @RequestParam(name = "free") Boolean free) {
+       return this.transportService.editFree(id, free);
+    }
 }
